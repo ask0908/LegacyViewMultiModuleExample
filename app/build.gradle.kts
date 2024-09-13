@@ -62,6 +62,14 @@ dependencies {
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
 
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.converter.scalars)
+
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.urlconnection)
+    implementation(libs.logging.interceptor)
+
     // for instrumentation tests
     androidTestImplementation("com.google.dagger:hilt-android-testing:2.48.1")
     kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.48.1")

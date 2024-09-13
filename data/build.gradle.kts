@@ -56,4 +56,12 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.room.paging)
     kapt(libs.room.compiler)
+
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.converter.scalars)
+
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.urlconnection)
+    implementation(libs.logging.interceptor)
 }
