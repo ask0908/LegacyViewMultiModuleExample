@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             albumViewModel.albums.collect {
-                Log.e(TAG, "Album 리스트 : $it")
                 if (it.isNotEmpty()) {
                     binding.tvText.text = "0번 제목 : ${it[0].title}" + "\n" + "1번 제목 : ${it[1].title}"
                 }

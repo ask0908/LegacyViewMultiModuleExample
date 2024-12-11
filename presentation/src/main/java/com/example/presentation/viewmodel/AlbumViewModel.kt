@@ -26,10 +26,10 @@ class AlbumViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val result = getAlbumsUseCase()
-                Log.e(TAG, "result : $result")
                 _albums.value = result
             } catch (e: Exception) {
                 Log.e(TAG, "뷰모델에서 에러 발생 : ${e.message}")
+                _albums.value = emptyList()
             }
         }
     }
