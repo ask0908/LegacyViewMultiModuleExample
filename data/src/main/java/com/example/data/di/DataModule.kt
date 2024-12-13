@@ -1,4 +1,4 @@
-package com.example.multimoduleexample.di
+package com.example.data.di
 
 import com.example.data.api.ApiService
 import com.example.data.mapper.AlbumMapper
