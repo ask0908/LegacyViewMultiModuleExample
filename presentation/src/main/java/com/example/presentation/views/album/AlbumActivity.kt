@@ -1,4 +1,4 @@
-package com.example.presentation
+package com.example.presentation.views.album
 
 import android.os.Bundle
 import android.util.Log
@@ -7,24 +7,24 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
-import com.example.presentation.databinding.ActivityMainBinding
-import com.example.presentation.viewmodel.AlbumViewModel
+import com.example.presentation.R
+import com.example.presentation.databinding.ActivityAlbumBinding
+import com.example.presentation.viewmodels.AlbumViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class AlbumActivity : AppCompatActivity() {
 
     private val TAG = this::class.simpleName
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityAlbumBinding
     private val albumViewModel: AlbumViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityAlbumBinding.inflate(layoutInflater)
         setContentView(binding.root)
         enableEdgeToEdge()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             albumViewModel.albums.collect {
                 if (it.isNotEmpty()) {
-                    binding.tvText.text = "0번 제목 : ${it[0].title}" + "\n" + "1번 제목 : ${it[1].title}"
+                    // 리사이클러뷰 세팅
                 }
             }
         }
