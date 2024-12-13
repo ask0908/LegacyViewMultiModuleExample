@@ -22,6 +22,8 @@ class AlbumActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAlbumBinding
     private val albumViewModel: AlbumViewModel by viewModels()
 
+    private lateinit var albumAdapter: AlbumAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAlbumBinding.inflate(layoutInflater)
@@ -33,16 +35,24 @@ class AlbumActivity : AppCompatActivity() {
             insets
         }
 
+        initRecyclerView()
+
         albumViewModel.loadAlbums()
 
         observeViewModel()
+    }
+
+    private fun initRecyclerView() {
+        albumAdapter = AlbumAdapter()
+        binding.rvAlbum.adapter = albumAdapter
+
     }
 
     private fun observeViewModel() {
         lifecycleScope.launch {
             albumViewModel.albums.collect {
                 if (it.isNotEmpty()) {
-                    // 리사이클러뷰 세팅
+                    albumAdapter.submitList(it)
                 }
             }
         }
