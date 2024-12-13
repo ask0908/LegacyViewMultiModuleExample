@@ -1,6 +1,6 @@
-package com.example.domain.model
+package com.example.domain.entity
 
-data class Album(
+data class AlbumEntity(
     val id: Int,
     val userId: Int,
     val title: String

@@ -37,6 +37,10 @@ class MainActivity : AppCompatActivity() {
 
         albumViewModel.loadAlbums()
 
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
         lifecycleScope.launch {
             albumViewModel.albums.collect {
                 if (it.isNotEmpty()) {
@@ -44,5 +48,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        lifecycleScope.launch {
+            albumViewModel.error.collect {
+                Log.e(TAG, "error : $it")
+            }
+        }
     }
+
 }

@@ -1,11 +1,11 @@
 package com.example.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.model.Album
-import com.example.domain.repository.GetAlbumsUseCase
+import com.example.domain.entity.AlbumEntity
+import com.example.domain.usecase.GetAlbumsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,20 +17,22 @@ class AlbumViewModel @Inject constructor(
     private val getAlbumsUseCase: GetAlbumsUseCase
 ): ViewModel() {
 
-    private val TAG = this::class.simpleName
+    private val _albums = MutableStateFlow<List<AlbumEntity>>(emptyList())
+    val albums: StateFlow<List<AlbumEntity>> = _albums.asStateFlow()
 
-    private val _albums = MutableStateFlow<List<Album>>(emptyList())
-    val albums: StateFlow<List<Album>> = _albums.asStateFlow()
+    private val _error = MutableStateFlow<String?>(null)
+    val error: StateFlow<String?> = _error.asStateFlow()
 
-    fun loadAlbums() {
-        viewModelScope.launch {
-            try {
-                val result = getAlbumsUseCase()
-                _albums.value = result
-            } catch (e: Exception) {
-                Log.e(TAG, "뷰모델에서 에러 발생 : ${e.message}")
-                _albums.value = emptyList()
-            }
+    fun loadAlbums() = viewModelScope.launch(Dispatchers.IO) {
+        getAlbumsUseCase().collect { result ->
+            result.fold(
+                onSuccess = { albums ->
+                    _albums.value = albums
+                },
+                onFailure = { e ->
+                    _error.value = e.message
+                }
+            )
         }
     }
 

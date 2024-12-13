@@ -1,7 +1,8 @@
 package com.example.domain.repository
 
-import com.example.domain.model.Album
+import com.example.domain.entity.AlbumEntity
+import kotlinx.coroutines.flow.Flow
 
 interface AlbumRepository {
-    suspend fun getAlbums(): List<Album>
+    fun getAlbums(): Flow<Result<List<AlbumEntity>>>
 }
