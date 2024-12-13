@@ -4,13 +4,13 @@
     <application>
         <activity
             android:name=".views.todo.TodoActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".views.photo.PhotoActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".views.album.AlbumActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".views.main.MainActivity"
             android:exported="true">
