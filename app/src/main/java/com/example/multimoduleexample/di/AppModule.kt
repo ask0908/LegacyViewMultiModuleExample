@@ -5,6 +5,7 @@ import android.content.Context
 import com.example.data.api.ApiService
 import com.example.data.mapper.AlbumMapper
 import com.example.data.mapper.PhotoMapper
+import com.example.data.mapper.TodoMapper
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -36,5 +37,9 @@ object AppModule {
     @Provides
     @Singleton
     fun providePhotoMapper(): PhotoMapper = PhotoMapper()
+
+    @Provides
+    @Singleton
+    fun provideTodoMapper(): TodoMapper = TodoMapper()
 
 }
