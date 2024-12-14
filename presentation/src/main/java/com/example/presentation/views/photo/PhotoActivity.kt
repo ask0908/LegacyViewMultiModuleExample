@@ -19,29 +19,39 @@ class PhotoActivity : AppCompatActivity() {
 
     private val TAG = this::class.simpleName
 
-    private lateinit var binding: ActivityPhotoBinding
     private val photoViewModel: PhotoViewModel by viewModels()
+
+    private lateinit var binding: ActivityPhotoBinding
+    private lateinit var photoAdapter: PhotoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPhotoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         enableEdgeToEdge()
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.photo_main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        initRecyclerView()
 
         photoViewModel.loadPhotos()
 
         observeViewModel()
     }
 
+    private fun initRecyclerView() {
+        photoAdapter = PhotoAdapter()
+        binding.rvPhoto.adapter = photoAdapter
+    }
+
     private fun observeViewModel() {
         lifecycleScope.launch {
             photoViewModel.photos.collect { photos ->
                 Log.e(TAG, "photos : $photos")
+                photoAdapter.submitList(photos)
             }
         }
     }

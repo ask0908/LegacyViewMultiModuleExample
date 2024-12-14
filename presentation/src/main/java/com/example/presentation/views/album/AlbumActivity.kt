@@ -19,9 +19,9 @@ class AlbumActivity : AppCompatActivity() {
 
     private val TAG = this::class.simpleName
 
-    private lateinit var binding: ActivityAlbumBinding
     private val albumViewModel: AlbumViewModel by viewModels()
 
+    private lateinit var binding: ActivityAlbumBinding
     private lateinit var albumAdapter: AlbumAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +29,7 @@ class AlbumActivity : AppCompatActivity() {
         binding = ActivityAlbumBinding.inflate(layoutInflater)
         setContentView(binding.root)
         enableEdgeToEdge()
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.album_main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
