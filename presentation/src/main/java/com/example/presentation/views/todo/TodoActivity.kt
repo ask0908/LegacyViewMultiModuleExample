@@ -22,6 +22,7 @@ class TodoActivity : AppCompatActivity() {
     private val todoViewModel: TodoViewModel by viewModels()
 
     private lateinit var binding: ActivityTodoBinding
+    private lateinit var todoAdapter: TodoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,13 +43,15 @@ class TodoActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        //
+        todoAdapter = TodoAdapter()
+        binding.rvTodo.adapter = todoAdapter
     }
 
     private fun observeViewModel() {
         lifecycleScope.launch {
             todoViewModel.todos.collect { todos ->
                 Log.e(TAG, "## todos : $todos")
+                todoAdapter.submitList(todos)
             }
         }
     }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="todoData"
+            type="com.example.domain.entity.TodoEntity" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp">
+
+            <CheckBox
+                android:id="@+id/cbCompleted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@{todoData.completed}"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:checked="true" />
+
+            <TextView
+                android:id="@+id/tvTodoUserId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{`userId : ` + String.valueOf(todoData.userId)}"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/cbCompleted"
+                app:layout_constraintStart_toEndOf="@+id/cbCompleted"
+                app:layout_constraintTop_toTopOf="@+id/cbCompleted"
+                tools:text="userId : 1" />
+
+            <TextView
+                android:id="@+id/tvTodoId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@{`id : ` + String.valueOf(todoData.id)}"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@+id/tvTodoUserId"
+                app:layout_constraintTop_toBottomOf="@+id/tvTodoUserId"
+                tools:text="id : 1" />
+
+            <TextView
+                android:id="@+id/tvTodoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{`title : ` + todoData.title}"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@+id/tvTodoId"
+                app:layout_constraintTop_toBottomOf="@+id/tvTodoId"
+                tools:text="title : delectus aut autem" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
