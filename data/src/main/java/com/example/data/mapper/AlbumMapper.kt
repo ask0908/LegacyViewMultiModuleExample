@@ -1,6 +1,6 @@
 package com.example.data.mapper
 
-import com.example.data.model.AlbumResponse
+import com.example.data.model.response.AlbumResponse
 import com.example.domain.entity.AlbumEntity
 
 class AlbumMapper {
@@ -9,12 +9,5 @@ class AlbumMapper {
             id = albumResponse.id,
             userId = albumResponse.userId,
             title = albumResponse.title,
-        )
-
-    fun mapToData(albumEntity: AlbumEntity): AlbumResponse =
-        AlbumResponse(
-            userId = albumEntity.id,
-            id = albumEntity.userId,
-            title = albumEntity.title,
         )
 }

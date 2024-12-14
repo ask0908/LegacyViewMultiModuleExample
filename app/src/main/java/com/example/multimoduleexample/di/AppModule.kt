@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.example.data.api.ApiService
 import com.example.data.mapper.AlbumMapper
+import com.example.data.mapper.PhotoMapper
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -31,5 +32,9 @@ object AppModule {
     @Provides
     @Singleton
     fun provideAlbumMapper(): AlbumMapper = AlbumMapper()
+
+    @Provides
+    @Singleton
+    fun providePhotoMapper(): PhotoMapper = PhotoMapper()
 
 }

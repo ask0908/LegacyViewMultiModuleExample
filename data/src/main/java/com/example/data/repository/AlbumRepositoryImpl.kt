@@ -2,7 +2,7 @@ package com.example.data.repository
 
 import com.example.data.api.ApiService
 import com.example.data.mapper.AlbumMapper
-import com.example.data.model.AlbumResponse
+import com.example.data.model.response.AlbumResponse
 import com.example.data.util.performApiCall
 import com.example.domain.entity.AlbumEntity
 import com.example.domain.repository.AlbumRepository
