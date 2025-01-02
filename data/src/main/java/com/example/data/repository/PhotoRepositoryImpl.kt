@@ -2,7 +2,6 @@ package com.example.data.repository
 
 import com.example.data.api.ApiService
 import com.example.data.mapper.PhotoMapper
-import com.example.data.model.response.AlbumResponse
 import com.example.data.model.response.PhotoResponse
 import com.example.data.util.performApiCall
 import com.example.domain.entity.PhotoEntity
